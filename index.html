@@ -8,7 +8,14 @@
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
 
     <!-- Head Libs -->
-    <script src="../static/jquery-3.5.1.js" th:src="@{jquery-3.5.1.js}" ></script>
+<!--    <script src="../static/jquery-3.5.1.js" th:src="@{jquery-3.5.1.js}" ></script>-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script type="text/javascript">
+        // 测试引用是否成功
+        $(document).ready(function(e) {
+            alert('jquery 添加成功!');
+        });
+    </script>
     <script>
         var _hmt = _hmt || [];
         (function() {
