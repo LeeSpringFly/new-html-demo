@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <title>TITLE</title>
 
     <!-- Head Libs -->
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="../static/jquery-3.5.1.js" />
 
     <style>
         .div-a{ float:left;width:49%;}
@@ -41,6 +43,7 @@
         <label>网站列表请求</label>
         <textarea id="siteListTxtRequest" class="weui-textarea" style="width: 95%" placeholder="请输入文本" rows="30">{
             "header" : {
+            "Access-Control-Allow-Origin": "*",
                 "username": "lalalavov",
                 "password": "Lina8899@",
                 "token": "e80966a7f4dd92f75bcf1bcbb53f8e77",
@@ -65,13 +68,23 @@
     function siteList() {
         var url = 'https://api.baidu.com/json/tongji/v1/ReportService/getSiteList';
         var data = $("#siteListTxtRequest").val();
-        console.log(data);
+        console.log(typeof data);
+        var jsonData = JSON.parse(data);
+        console.log(typeof jsonData);
+        console.log(jsonData);
+        // $.post(url, jsonData, function (result){
+        //         console.log(result);
+        //         $('#siteListTxtResponse').val(result);
+        //     },
+        //     'JSON'
+        // )
         $.ajax({
             url: encodeURI(url),
-            type: 'POST',
+            method: 'POST',
             timeout: 6000,
-            data: data,
-            dataType:'JSONP',
+            async:false,
+            data: jsonData,
+            dataType:'JSON',
             error: function (result) {
                 console.log(result);
                 alert("请求失败");
