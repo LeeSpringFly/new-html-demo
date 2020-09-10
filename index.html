@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+    <title>TITLE</title>
 
     <!-- Head Libs -->
-<!--    <script src="../static/jquery-3.5.1.js" th:src="@{jquery-3.5.1.js}" ></script>-->
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
-<!--    <script type="text/javascript">-->
-<!--        // 测试引用是否成功-->
-<!--        $(document).ready(function(e) {-->
-<!--            alert('jquery 添加成功!');-->
-<!--        });-->
-<!--    </script>-->
+
+    <style>
+        .div-a{ float:left;width:49%;}
+        .div-b{ float:right;width:49%;}
+        .div-center{ text-align: center}
+    </style>
+
     <script>
         var _hmt = _hmt || [];
         (function() {
@@ -30,32 +28,37 @@
 <h1>HOME 02</h1>
 
 <div class="weui-cells weui-cells_form">
-    <div class="weui-cell weui-cell_active" style="float: left; ">
+    <div class="weui-cell weui-cell_active">
         <label>站点列表请求</label>
         <div class="weui-cell__bd">
-            <textarea id="siteListTxtRequest" class="weui-textarea" style="width: 500px;" placeholder="请输入文本" rows="30">{
-    "header" : {
-        "username": "lalalavov",
-        "password": "Lina8899@",
-        "token": "9f83e84bcaacc1ea8f1328cf761a4184",
-        "account_type": 1
-        }
-}</textarea>
+            <input id="jsIn" />
         </div>
     </div>
+</div>
 
-    <div class="weui-cell weui-cell_active" style="float: right;">
-        <label>站点列表响应</label>
-        <div class="weui-cell__bd">
-            <textarea id="siteListTxtResponse" class="weui-textarea" style="width: 500px;" placeholder="请输入文本" rows="30"></textarea>
-        </div>
+<div>
+    <div class="div-a">
+        <label>网站列表请求</label>
+        <textarea id="siteListTxtRequest" class="weui-textarea" style="width: 95%" placeholder="请输入文本" rows="30">{
+            "header" : {
+                "username": "lalalavov",
+                "password": "Lina8899@",
+                "token": "e80966a7f4dd92f75bcf1bcbb53f8e77",
+                "account_type": 1
+                }
+        }</textarea>
+    </div>
+    <div class="div-b">
+        <label>网站列表响应</label>
+        <textarea id="siteListTxtResponse" class="weui-textarea" style="width: 95%" placeholder="请输入文本" rows="30"></textarea>
     </div>
 
-    <div class="button-sp-area">
+    <div class="div-center">
         <button class="weui-btn weui-btn_mini weui-btn_primary" onclick="siteList()">网站列表</button>
     </div>
-
 </div>
+
+
 
 <script>
     // 账户回调
@@ -64,7 +67,7 @@
         var data = $("#siteListTxtRequest").val();
         console.log(data);
         $.ajax({
-            url: url,
+            url: encodeURI(url),
             type: 'POST',
             timeout: 6000,
             data: data,
@@ -79,6 +82,11 @@
             }
         });
     }
+
+    // 测试引用是否成功-->
+    $(document).ready(function(e) {
+        $('#jsIn').val('jquery 引用成功');
+    });
 </script>
 
 </body>
